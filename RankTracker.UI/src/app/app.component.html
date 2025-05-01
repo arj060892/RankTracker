@@ -1,0 +1,46 @@
+<div class="container-fluid bg-light py-2 border-bottom">
+  <div class="row align-items-center">
+    <div class="col">
+      <span class="fw-bold fs-4">Rank Tracker</span>
+    </div>
+    <div class="col-auto">
+      <span
+        >Hello, {{ currentDateTime | date : "fullDate" }} at
+        {{ currentDateTime | date : "shortTime" }}</span
+      >
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <ngb-accordion
+    #acc="ngbAccordion"
+    [closeOthers]="true"
+    activeIds="panel-search"
+    class="mb-4"
+  >
+    <ngb-panel id="panel-search">
+      <ng-template ngbPanelTitle>
+        <span class="fw-bold">
+          <i class="bi bi-search me-1"></i>
+          Search
+        </span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <app-search></app-search>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="panel-trend">
+      <ng-template ngbPanelTitle>
+        <span class="fw-bold">
+          <i class="bi bi-graph-up me-1"></i>
+          Trend Dashboard
+        </span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <app-trend-dashboard></app-trend-dashboard>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>

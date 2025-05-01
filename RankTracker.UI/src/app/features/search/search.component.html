@@ -1,0 +1,109 @@
+<div class="row">
+  <!-- Search Form -->
+  <div class="col-md-6 mb-3 mb-md-0">
+    <div class="card h-100">
+      <div class="card-header bg-primary text-white">
+        <h5 class="card-title mb-0">Search</h5>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSearch()">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="searchEngine" class="form-label">Search Engine</label>
+              <select
+                id="searchEngine"
+                class="form-select"
+                [(ngModel)]="engine"
+                name="engine"
+                required
+              >
+                <option *ngFor="let e of engines" [value]="e.name">
+                  {{ e.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="url" class="form-label">URL</label>
+              <input
+                id="url"
+                type="text"
+                class="form-control"
+                placeholder="Enter URL"
+                [(ngModel)]="url"
+                name="url"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-12">
+              <label for="phrase" class="form-label">Phrase</label>
+              <input
+                id="phrase"
+                type="text"
+                class="form-control"
+                placeholder="Enter search phrase"
+                [(ngModel)]="query"
+                name="query"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="d-grid">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="loading || !engine || !query || !url"
+            >
+              <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm me-2"
+              ></span>
+              {{ loading ? "Searching..." : "Search" }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-header bg-success text-white">
+        <h5 class="card-title mb-0">Current Positions</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered text-center mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Position</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pos of positions">
+              <td>{{ pos }}</td>
+            </tr>
+            <tr *ngIf="!loading && positions && positions.length === 0">
+              <td colspan="1" class="text-muted">No results found (0)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mt-1">
+    <ngb-alert
+      *ngIf="errorMessage"
+      type="danger"
+      [dismissible]="true"
+      (close)="errorMessage = null"
+    >
+      {{ errorMessage }}
+    </ngb-alert>
+  </div>
+</div>
