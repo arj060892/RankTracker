@@ -29,6 +29,7 @@ RankTracker is a comprehensive SEO ranking analysis tool that automatically chec
    - Launch SQL Server in a container
    - Initialize the database
    - Build and run the Angular UI
+   - Installs Playwright CLI
 
 2. Run `run-app.bat` to start the .NET API
 
@@ -36,6 +37,13 @@ RankTracker is a comprehensive SEO ranking analysis tool that automatically chec
 
 
 ### Manual Setup (Alternative)
+
+Before running the application manually, ensure **Playwright CLI** is installed to support automated browser control required for scraping due to google anti-bot measures :
+
+```bash
+dotnet tool install --global Microsoft.Playwright.CLI
+playwright install chromium
+```
 
 1. **Open Solution**:
    - Launch Visual Studio
@@ -59,7 +67,6 @@ RankTracker is a comprehensive SEO ranking analysis tool that automatically chec
      - Start the .NET API backend
      - Launch the Angular frontend
      - Open both in your default browser
-
 ## Architecture
 
 ```

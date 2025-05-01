@@ -6,6 +6,11 @@
         <h5 class="card-title mb-0">Search</h5>
       </div>
       <div class="card-body">
+        <ng-template #captchaHelp>
+          Please click the <b>Chromium</b> icon in your taskbar
+          to complete the Google CAPTCHA in the browser window.
+        </ng-template>
+
         <form (ngSubmit)="onSearch()">
           <div class="row mb-3">
             <div class="col-md-6">
@@ -56,6 +61,11 @@
               type="submit"
               class="btn btn-primary"
               [disabled]="loading || !engine || !query || !url"
+              [ngbPopover]="captchaHelp"
+              popoverTitle="CAPTCHA Instructions"
+              triggers="manual"
+              #captchaPopover="ngbPopover"
+              (click)="onSearchButtonClick($event, captchaPopover)"
             >
               <span
                 *ngIf="loading"

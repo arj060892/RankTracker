@@ -31,6 +31,10 @@ echo [4/4] Starting Angular on port %UI_PORT%...
 docker run -d -p %UI_PORT%:4200 --name ranktracker-ui ranktracker-ui
 timeout /t 20 /nobreak >nul
 
+:: Install headless
+dotnet tool install --global microsoft.Playwright.CLI >null 2>&1
+playwright install chromium
+
 echo.
 echo SETUP COMPLETE!
 echo - SQL Server running on port %SQL_PORT%
